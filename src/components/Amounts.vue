@@ -1,7 +1,7 @@
 <template>
   <v-layout row wrap>
     <v-flex class="pa-2 d-flex justify-center" xs12 md6 sm6>
-      <v-card flat width="350">
+      <v-card width="350">
         <v-subheader class="justify-center text-h6 font-weight-light">
           {{ `Gorjeta: ${tipRange}%` }}
         </v-subheader>
@@ -236,7 +236,6 @@ export default {
     amount: {
       type: String,
     },
-
     tip: {
       type: String,
     },

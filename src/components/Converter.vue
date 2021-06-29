@@ -1,8 +1,8 @@
 <template>
   <v-container>
-    <v-row style="border: 5px solid yellow" class="mb-6">
+    <v-row class="mb-6">
       <v-col cols="12" sm="12">
-        <v-card class=" text-center" flat>
+        <v-card class=" text-center mt-4 display-2 font-weight-light " flat>
           LE/TIP
         </v-card>
       </v-col>
@@ -12,10 +12,9 @@
       <v-col cols="12" xs="12" md="12" sm="12" class="pa-0 ">
         <v-window v-model="step" class="pa-3">
           <v-window-item :value="1">
-            <v-row style="border: 2px solid black" class="">
+            <v-row class="">
               <v-col
                 cols="12 "
-                style="border: 3px solid green"
                 xs="12"
                 md="6"
                 class=" d-flex justify-center align-center"
@@ -39,7 +38,6 @@
                 md="6"
                 class=" d-flex justify-center "
                 sm="6"
-                style="border: 3px solid red"
               >
                 <vuetify-money
                   color="deep-purple accent-2"
@@ -49,33 +47,21 @@
                   outlined
                 ></vuetify-money>
               </v-col>
-              <v-col
-                cols="12"
-                xs="12"
-                md="6"
-                sm="6"
-                style="border: 3px solid red"
-              >
-                <v-card class="pa-2 justify-space-around text-center">
-                  CONTA
-                </v-card>
-                <v-card class="pa-2   text-center">
-                  CONTA 1
-                </v-card>
-                <v-card class="pa-2   text-center">
-                  CONTA 1
-                </v-card>
+              <v-col cols="12" xs="12" md="6" sm="6">
+                <Slider
+                  :minValue="2"
+                  :maxValue="16"
+                  :rangeName="'Pessoas'"
+                  :percentage="false"
+                />
               </v-col>
-              <v-col
-                cols="12"
-                xs="12"
-                md="6"
-                sm="6"
-                style="border: 3px solid red"
-              >
-                <v-card class="pa-2   text-center">
-                  CONTA
-                </v-card>
+              <v-col cols="12" xs="12" md="6" sm="6">
+                <Slider
+                  :minValue="10"
+                  :maxValue="20"
+                  :rangeName="'Gorjeta'"
+                  :percentage="true"
+                />
               </v-col>
             </v-row>
           </v-window-item>
@@ -112,53 +98,6 @@
         </v-window>
       </v-col>
     </v-row>
-    <!-- 
-      <v-col cols="12" xs="12" md="12" sm="12" style="border: 5px solid red">
-        <v-card class="pa-2 text-center">
-          CONTA
-        </v-card>
-      </v-col>
-      <v-col cols="12" xs="12" md="12" sm="12" style="border: 5px solid red">
-        <v-card class="pa-2 text-center">
-          VALOR
-        </v-card>
-      </v-col>
-      <v-col cols="12" xs="12" md="12" sm="12" style="border: 5px solid red">
-        <v-card class="pa-2 text-center">
-          GORJETA 13%
-        </v-card>
-      </v-col>
-      <v-col cols="12" xs="12" md="12" sm="12" style="border: 5px solid red">
-        <v-card class="pa-2 text-center">
-          TOTAL
-        </v-card>
-      </v-col>
-    </v-row> -->
-
-    <!--    <v-row>
-        <v-col cols="12" xs="12" md="12" sm="6" style="border: 5px solid red">
-    <v-window-item :value="2">
-          <v-card class="pa-2 text-center">
-            PESSOAS
-          </v-card>
-        </v-col>
-        <v-col cols="12" xs="12" md="12" sm="6" style="border: 5px solid red">
-          <v-card class="pa-2 text-center">
-            POR PESSOA
-          </v-card>
-        </v-col>
-        <v-col cols="12" xs="12" md="12" sm="6" style="border: 5px solid red">
-          <v-card class="pa-2 text-center">
-            EM R$
-          </v-card>
-        </v-col>
-        <v-col cols="12" xs="12" md="12" sm="6" style="border: 5px solid red">
-          <v-card class="pa-2 text-center">
-            EM R$
-          </v-card>
-        </v-col>
-      </v-row>
-    </v-window-item>  -->
 
     <v-speed-dial bottom right direction="top" fixed>
       <template v-slot:activator>
@@ -264,12 +203,14 @@
 </template>
 
 <script>
+import Slider from "./Slider.vue";
 import Amounts from "./Amounts.vue";
 import { api } from "../services/api";
 
 export default {
   components: {
     Amounts,
+    Slider,
   },
   data() {
     return {
