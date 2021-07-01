@@ -2,17 +2,20 @@
   <v-card flat>
     <v-card-title class="justify-center text-h6 font-weight-light">
       {{
-        this.percentage ? `${rangeName}: ${range}%` : `${rangeName}: ${range}`
+        this.percentage
+          ? `${rangeName}: ${controlSlider}%`
+          : `${rangeName}: ${controlSlider}`
       }}
     </v-card-title>
 
     <v-slider
-      v-model="range"
+      v-model="controlSlider"
       :min="minValue"
       :max="maxValue"
       track-color="deep-purple accent-2"
       track-fill-color="deep-purple accent-2"
       thumb-color="deep-purple accent-2"
+      @change="changeValueFunction(controlSlider)"
     >
     </v-slider>
   </v-card>
@@ -22,7 +25,7 @@
 export default {
   data() {
     return {
-      range: null,
+      controlSlider: this.minValue,
     };
   },
 
@@ -43,6 +46,14 @@ export default {
 
     percentage: {
       type: Boolean,
+    },
+  },
+
+  watch: {
+    controlSlider: {
+      handler() {
+        this.$emit("newValue", this.controlSlider);
+      },
     },
   },
 };
