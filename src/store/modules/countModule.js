@@ -73,7 +73,7 @@ export default {
 
   getters: {
       BASE_CURRENCY_SYMBOL: state => {
-        return state.currency ? state.currencies.find(currency => currency.type === state.currency.type).symbol : ''
+        return state.currency ? state.currencies.find(currency => currency.type === state.currency.currency).symbol : ''
       },
       COUNT: state => {
         return state.count.value ? parseFloat(state.count.value).toFixed(2) : '0.00';

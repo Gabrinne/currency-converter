@@ -28,13 +28,11 @@
                 class=" d-flex justify-center "
                 sm="6"
               >
-                <vuetify-money
-                  color="deep-purple accent-2"
-                  class=" mt-5"
-                  placeholder="Digite o valor da conta"
-                  v-model="count.minValue"
-                  outlined
-                ></vuetify-money>
+                <CustomTextField
+                  :type="'number'"
+                  :minValue="count.minValue"
+                  @newValue="changeCount"
+                />
               </v-col>
               <v-col cols="12" xs="12" md="6" sm="6">
                 <Slider
@@ -90,6 +88,7 @@ import { mapState, mapMutations, mapGetters, mapActions } from "vuex";
 
 import ValueFields from "./ValueFields.vue";
 import Slider from "./Slider.vue";
+import CustomTextField from "./CustomTextField.vue";
 import CustomSwitch from "./CustomSwitch.vue";
 import Amounts from "./Amounts.vue";
 import { api } from "../services/api";
@@ -99,6 +98,7 @@ export default {
     Amounts,
     CustomSwitch,
     Slider,
+    CustomTextField,
     ValueFields,
   },
   data() {
@@ -132,6 +132,10 @@ export default {
         },
       ],
     };
+  },
+
+  mounted() {
+    this.changeBaseCurrency("USD");
   },
 
   methods: {

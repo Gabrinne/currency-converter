@@ -15,8 +15,13 @@
       track-color="deep-purple accent-2"
       track-fill-color="deep-purple accent-2"
       thumb-color="deep-purple accent-2"
-      @change="changeValueFunction(controlSlider)"
     >
+      <template #append
+        ><span>{{ maxValue }}</span></template
+      >
+      <template #prepend
+        ><span>{{ minValue }}</span></template
+      >
     </v-slider>
   </v-card>
 </template>
