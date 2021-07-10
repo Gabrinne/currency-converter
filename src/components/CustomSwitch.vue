@@ -54,8 +54,10 @@ export default {
 }
 .switchValue--active {
   font-weight: bolder;
+  color: rgb(133, 63, 202);
 }
 .switchValue--default {
   font-weight: lighter;
+  color: rgb(133, 63, 202);
 }
 </style>

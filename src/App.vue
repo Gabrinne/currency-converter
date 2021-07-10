@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar app :color="themeColor">
+    <v-app-bar dark app :color="themeColor">
       <v-toolbar-title>Le/Tip</v-toolbar-title>
     </v-app-bar>
 

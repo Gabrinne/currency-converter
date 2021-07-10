@@ -1,6 +1,6 @@
 <template>
   <v-text-field
-    class="txtField mt-6"
+    class=" mt-6"
     color="deep-purple accent-2"
     outlined
     dense
@@ -16,7 +16,7 @@ export default {
     type: {},
     minValue: {},
   },
-  name: "CustomTxtField",
+
   data() {
     return {
       controlTxtField: this.minValue,
@@ -32,8 +32,4 @@ export default {
 };
 </script>
 
-<style scoped>
-.txtField {
-  width: 100%;
-}
-</style>
+<style scoped></style>

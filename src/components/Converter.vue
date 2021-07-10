@@ -2,8 +2,10 @@
   <v-container>
     <v-row class="mb-6">
       <v-col cols="12" sm="12">
-        <v-card class=" text-center mt-4 display-2 font-weight-light " flat>
-          LE/TIP
+        <v-card class=" text-center mt-4 display-2 font-weight-light  " flat>
+          <span style="color:  #6600CC">
+            LE/TIP
+          </span>
         </v-card>
       </v-col>
     </v-row>
@@ -35,7 +37,7 @@
                 />
               </v-col>
               <v-col cols="12" xs="12" md="6" sm="6">
-                <Slider
+                <CustomSlider
                   :minValue="people.minValue"
                   :maxValue="people.maxValue"
                   :rangeName="'Pessoas'"
@@ -44,7 +46,7 @@
                 />
               </v-col>
               <v-col cols="12" xs="12" md="6" sm="6">
-                <Slider
+                <CustomSlider
                   :minValue="tip.minValue"
                   :maxValue="tip.maxValue"
                   :rangeName="'Gorjeta'"
@@ -56,18 +58,7 @@
           </v-window-item>
 
           <v-window-item :value="2">
-            <v-row style="border: 2px solid black" class="d-flex">
-              <v-col
-                cols="12"
-                xs="12"
-                md="6"
-                sm="6"
-                v-for="(amount, i) in amounts"
-                :key="i"
-              >
-                <ValueFields :title="amount.title" :total="amount.value" />
-              </v-col>
-            </v-row>
+            <Results />
           </v-window-item>
         </v-window>
       </v-col>
@@ -76,7 +67,9 @@
     <v-speed-dial bottom right direction="top" fixed>
       <template v-slot:activator>
         <v-btn color="light-green accent-4" dark fab @click="step++">
-          >
+          <v-icon>
+            {{ step === 1 ? "mdi-arrow-right-thick" : "mdi-arrow-left-thick" }}
+          </v-icon>
         </v-btn>
       </template>
     </v-speed-dial>
@@ -84,53 +77,23 @@
 </template>
 
 <script>
-import { mapState, mapMutations, mapGetters, mapActions } from "vuex";
+import { mapState, mapMutations, mapActions } from "vuex";
 
-import ValueFields from "./ValueFields.vue";
-import Slider from "./Slider.vue";
+import CustomSlider from "./CustomSlider.vue";
+import Results from "./Results.vue";
 import CustomTextField from "./CustomTextField.vue";
 import CustomSwitch from "./CustomSwitch.vue";
-import Amounts from "./Amounts.vue";
-import { api } from "../services/api";
 
 export default {
   components: {
-    Amounts,
+    Results,
     CustomSwitch,
-    Slider,
+    CustomSlider,
     CustomTextField,
-    ValueFields,
   },
   data() {
     return {
       step: 1,
-      amounts: [
-        {
-          title: "Conta",
-          currency: null,
-          value: null,
-        },
-        {
-          title: "Gorjeta",
-          currency: null,
-          value: null,
-        },
-        {
-          title: "Total",
-          currency: null,
-          value: null,
-        },
-        {
-          title: "Por pessoa",
-          currency: null,
-          value: null,
-        },
-        {
-          title: "Em R$",
-          currency: "R$",
-          value: null,
-        },
-      ],
     };
   },
 
@@ -166,7 +129,6 @@ export default {
     },
   },
   computed: {
-    ...mapGetters("countModule", ["BASE_CURRENCY_SYMBOL"]),
     ...mapState("countModule", [
       "count",
       "people",

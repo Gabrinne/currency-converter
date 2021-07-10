@@ -1,13 +1,17 @@
 <template>
   <v-card flat>
-    <v-card-title class="justify-center text-h6 font-weight-light">
-      {{
-        this.percentage
-          ? `${rangeName}: ${controlSlider}%`
-          : `${rangeName}: ${controlSlider}`
-      }}
-    </v-card-title>
-
+    <div>
+      <span
+        class="justify-center d-flex text-h6 font-weight-light"
+        style="color: #6600CC"
+      >
+        {{
+          this.percentage
+            ? `${rangeName}: ${controlSlider}%`
+            : `${rangeName}: ${controlSlider}`
+        }}
+      </span>
+    </div>
     <v-slider
       v-model="controlSlider"
       :min="minValue"
